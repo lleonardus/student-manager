@@ -19,7 +19,7 @@ public class Student {
     @Column(name = "student_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String enrollment;
 
     @Column(nullable = false)
