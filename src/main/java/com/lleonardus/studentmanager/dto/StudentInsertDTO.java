@@ -41,8 +41,10 @@ public class StudentInsertDTO {
     public Student toStudent(){
         List<Phone> phoneList = new ArrayList<>();
 
-        for(PhoneInsertDTO p: phones){
-            phoneList.add(new Phone(null, p.getNumber()));
+        if(phones != null) {
+            for (PhoneInsertDTO p : phones) {
+                phoneList.add(new Phone(null, p.getNumber()));
+            }
         }
 
         return Student.builder()
