@@ -73,7 +73,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenSuccessful_Returns200() throws Exception{
+    void insert_WhenSuccessful_Returns200() throws Exception{
         String json = objectMapper.writeValueAsString(StudentFactory.createStudentInsertDTO());
 
         mockMvc.perform(post("/students")
@@ -85,7 +85,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenRegisterIsNotUnique_Returns400() throws Exception{
+    void insert_WhenRegisterIsNotUnique_Returns400() throws Exception{
         when(service.insert(any())).thenThrow(DataIntegrityViolationException.class);
         String json = objectMapper.writeValueAsString(StudentFactory.createStudentInsertDTO());
 
@@ -96,7 +96,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenNameIsNull_Returns400() throws Exception{
+    void insert_WhenNameIsNull_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setName(null);
 
@@ -109,7 +109,7 @@ class StudentControllerITTest {
 
     }
     @Test
-    void create_WhenNameHasInvalidLength_Returns400() throws Exception{
+    void insert_WhenNameHasInvalidLength_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setName("123");
 
@@ -122,7 +122,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenLastNameIsNull_Returns400() throws Exception{
+    void insert_WhenLastNameIsNull_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setLastName(null);
 
@@ -135,7 +135,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenLastNameHasInvalidLength_Returns400() throws Exception{
+    void insert_WhenLastNameHasInvalidLength_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setLastName("123");
 
@@ -148,7 +148,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenEnrollmentIsNull_Returns400() throws Exception{
+    void insert_WhenEnrollmentIsNull_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setEnrollment(null);
 
@@ -160,7 +160,7 @@ class StudentControllerITTest {
                 .andExpect(status().isBadRequest());
     }
     @Test
-    void create_WhenEnrollmentHasInvalidLength_Returns400() throws Exception{
+    void insert_WhenEnrollmentHasInvalidLength_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setEnrollment("123");
 
@@ -173,7 +173,7 @@ class StudentControllerITTest {
     }
 
     @Test
-    void create_WhenPhoneNumberIsNull_Returns400() throws Exception{
+    void insert_WhenPhoneNumberIsNull_Returns400() throws Exception{
         StudentInsertDTO studentInsertDTO = StudentFactory.createStudentInsertDTO();
         studentInsertDTO.setPhones(Set.of(new PhoneInsertDTO()));
 
