@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,7 +85,21 @@ class StudentServiceTest {
     void insert_WhenSuccessful_ReturnsAStudent() {
         StudentGetDTO response = service.insert(studentInsertDTO);
 
-        assertEquals(student, studentInsertDTO.toStudent());
+        assertNotNull(response);
+        assertEquals(studentGetDTO, response);
+    }
+
+    @Test
+    @DisplayName("insert, when student does not have phones, returns a student")
+    void insert_whenStudentDoesNotHavePhones_ReturnsAStudent() {
+        studentInsertDTO.setPhones(null);
+        student.setPhones(new ArrayList<>());
+        studentGetDTO.setPhones(new ArrayList<>());
+
+        when(repository.save(studentInsertDTO.toStudent())).thenReturn(student);
+
+        StudentGetDTO response = service.insert(studentInsertDTO);
+
         assertNotNull(response);
         assertEquals(studentGetDTO, response);
     }
