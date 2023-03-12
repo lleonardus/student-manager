@@ -24,8 +24,10 @@ public class StudentGetDTO {
     public static StudentGetDTO valueOf(Student student){
         List<PhoneGetDTO> phoneGetDTOS = new ArrayList<>();
 
-        for (Phone p : student.getPhones()) {
-            phoneGetDTOS.add(new PhoneGetDTO(p.getId(), p.getNumber()));
+        if(student.getPhones() != null) {
+            for (Phone p : student.getPhones()) {
+                phoneGetDTOS.add(new PhoneGetDTO(p.getId(), p.getNumber()));
+            }
         }
 
         return StudentGetDTO.builder()
