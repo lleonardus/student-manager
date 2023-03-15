@@ -40,7 +40,7 @@ public class StudentService {
     }
 
     public StudentGetDTO update(Long id, StudentUpdateDTO studentUpdateDTO){
-        this.isEnrollmentUnique(studentUpdateDTO.getEnrollment(), studentUpdateDTO.getId());
+        this.isEnrollmentUnique(studentUpdateDTO.getEnrollment(), id);
         Student student = findByIdOrElseThrowObjectNotFoundException(id);
         student.setName(studentUpdateDTO.getName());
         student.setLastName(studentUpdateDTO.getLastName());
